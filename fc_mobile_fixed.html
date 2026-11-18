@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An FC Mobile fan page with game information, player images, and a simple rating form.">
+  <title>FC MOBILE | Fan Page</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #101820;
+      color: #f5f7fa;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      color: #00f52d;
+      line-height: 1.2;
+    }
+
+    header, section, footer {
+      margin-bottom: 28px;
+    }
+
+    .intro, .panel {
+      padding: 22px;
+      border-radius: 12px;
+      background: #1b2a34;
+    }
+
+    .panel {
+      border: 2px dashed #ff0066;
+    }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      max-width: 850px;
+      height: auto;
+      margin: 12px 0 26px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      min-height: 42px;
+      margin-top: 6px;
+      padding: 8px 10px;
+      border: 2px solid #9aa7b0;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 11px 22px;
+      border: 0;
+      border-radius: 6px;
+      background: #00f52d;
+      color: #101820;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #8cff9f;
+    }
+
+    .song-link {
+      color: #ff4d91;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .note {
+      color: #c5d0d8;
+      font-size: 0.92rem;
+    }
+
+    footer {
+      color: #c5d0d8;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>ABOUT FC MOBILE</h1>
+      <p class="note">A fan-made page for football and FC Mobile fans.</p>
+    </header>
+
+    <section class="intro">
+      <p>
+        EA SPORTS FC Mobile is a football simulation mobile game developed
+        by Electronic Arts (EA). It was previously known as FIFA Mobile
+        and was rebranded as FC Mobile in September 2023.
+      </p>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li><strong>Ultimate Team:</strong> Collect football players and build your dream squad.</li>
+        <li><strong>Head to Head (H2H):</strong> Play matches against other players.</li>
+        <li><strong>VS Attack (VSA):</strong> Take part in quick attacking challenges.</li>
+        <li><strong>Manager Mode:</strong> Choose tactics and let your team play.</li>
+        <li><strong>PlayStyles:</strong> Explore special player abilities and traits.</li>
+        <li><strong>Customization:</strong> Personalize parts of your team and its appearance.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>RANKING AND NAME</h2>
+      <form id="ratingForm">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text"
+               placeholder="Enter your name" required>
+
+        <label for="ranking">Your rating (1–5)</label>
+        <input id="ranking" name="ranking" type="number"
+               min="1" max="5" step="1"
+               placeholder="Give a rating from 1 to 5" required>
+
+        <button type="submit">Submit</button>
+        <p id="formMessage" class="note" aria-live="polite">
+          This demo shows your response on this page; it does not send or save it online.
+        </p>
+      </form>
+    </section>
+
+    <section class="gallery">
+      <h2>LINEUPS</h2>
+      <img
+        src="https://i.ibb.co.com/RX1LMTD/4-Real-Madrid-Lineup-EN-1930-1080.jpg"
+        alt="Real Madrid lineup">
+
+      <h2>CELEBRATING</h2>
+      <img
+        src="https://i.ibb.co.com/QFhqHFNd/5-Play-Styles-Ronaldinho-EN-1920-1080.jpg"
+        alt="Ronaldinho celebrating">
+
+      <h2>PLAY STYLES</h2>
+      <img
+        src="https://i.ibb.co.com/rGvZvnXF/FC-Mobile-Play-Styles-Deep-Dive-Thumbnail2.jpg"
+        alt="FC Mobile PlayStyles">
+    </section>
+
+    <section>
+      <h2>RONALDO TRIBUTE</h2>
+      <a class="song-link"
+         href="https://youtu.be/ssi2oRL2LsQ"
+         target="_blank" rel="noopener noreferrer">
+        Tribute to Ronaldo – The Best of All Time
+      </a>
+    </section>
+
+    <footer>
+      <p>Fan-made FC Mobile page. Not affiliated with EA SPORTS.</p>
+    </footer>
+  </main>
+
+  <script>
+    const ratingForm = document.getElementById("ratingForm");
+    const formMessage = document.getElementById("formMessage");
+
+    ratingForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const ranking = Number(document.getElementById("ranking").value);
+
+      if (!name || !Number.isInteger(ranking) || ranking < 1 || ranking > 5) {
+        formMessage.textContent = "Please enter your name and a whole-number rating from 1 to 5.";
+        return;
+      }
+
+      formMessage.textContent =
+        "Thank you, " + name + "! Your rating is " + ranking + "/5. This demo has not saved it online.";
+      ratingForm.reset();
+    });
+  </script>
+</body>
+</html>
